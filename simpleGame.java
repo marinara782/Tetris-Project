@@ -65,6 +65,8 @@ public void startGame() {
 // Run the Tetris game loop here!
 public void runGame(){
         'implement game logic here'
+    spawnNewPiece();
+    gameLoop();
 }
 
 // This is where we would put the arrow keys and implement them as such!!
@@ -75,6 +77,30 @@ public static void handleUserInput() {
         Scanner scanner = new Scanner(System.in); 'create a scanner object to read user input from the console'
 
 
+}
+
+
+// Basically every this many milliseconds a piece will drop
+public void gameLoop() {
+        new Timer(500, e -> {
+            if (!gameOver) {
+                movePieceDown();
+            }
+        }).start();
+}
+
+
+//Spawn a new random tetris piece
+    public void spawnNewPiece(); {
+        'The new piece logic should go here!'
+    }
+
+
+// This is to generate the shape matrix for each tetris type!
+private int[][] getTetrisShape(String type) {
+        switch (type) {
+            'The shapes should go here once we figure it out'
+        }
 }
 }
 
