@@ -55,7 +55,7 @@ public static void executeMenuSelection() {
 }
 
 
-// This is where we would put the arrow keys and implement them as such!
+// This is where we would put the arrow keys and implement them as such!!
 public static void handleUserInput() {
         arrowKeys = ['up', 'down', 'left', 'right']
         Scanner scanner = new Scanner(System.in); 'create a scanner object to read user input from the console'
