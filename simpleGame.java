@@ -2,7 +2,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-'Basically the start of our game will go here'
+'Basically the start of our game will go here!'
 public class simpleGame {
 
     private static Random random = new Random();
