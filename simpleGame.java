@@ -46,8 +46,7 @@ public class simpleGame {
 // Execute the selected menu option
 public static void executeMenuSelection() {
         if (selectedOption == 0) {
-            System.out.println("Starting...")
-             'Then we put the game logic here I believe?'
+            startGame();
         } else if (selectedOption == 2) {
             System.out.println("Exiting...:(");
             System.exit(0);
@@ -55,12 +54,27 @@ public static void executeMenuSelection() {
 }
 
 
+// This is where the game will start
+public void startGame() {
+        System.out.println("Starting...");
+        'The game will start'
+         runGame();
+}
+
+
+// Run the Tetris game loop here!
+public void runGame(){
+        'implement game logic here'
+}
+
 // This is where we would put the arrow keys and implement them as such!!
 public static void handleUserInput() {
+        displayMenu();
+
         arrowKeys = ['up', 'down', 'left', 'right'] 'just maybe a way we could implement the use of arrow keys'
         Scanner scanner = new Scanner(System.in); 'create a scanner object to read user input from the console'
 
-        if
+
 }
 }
 
