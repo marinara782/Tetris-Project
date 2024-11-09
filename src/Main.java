@@ -6,6 +6,8 @@ public class Main {
         private static int[] fallingBlocksY = new int[10];//An array for simulating falling blocks
         private static String[] menuOptions = {"Start","Exit"};
         private static int selectedOption = 0;
+        boolean gameOver = false;
+
 
         public static void main(String[] args) {
             //Start the game loop by showing the Tetris title screen
@@ -47,7 +49,7 @@ public class Main {
     }
 
         // Execute the selected menu option
-        public static void executeMenuSelection() {
+        public void executeMenuSelection() {
             if (selectedOption == 0) {
                 startGame();
             } else if (selectedOption == 2) {
@@ -78,16 +80,16 @@ public class Main {
 
         // Basically every this many milliseconds a piece will drop
         public void gameLoop() {
-            new Timer(500, e -> {
+            new Timer(500, e -> {  //
                 if (!gameOver) {
-                    movePieceDown();
+                    movePieceDown(); // This method will be responsible for helping the Tetromino move down
                 }
             }).start();
         }
 
 
         //Spawn a new random tetris piece
-        public void spawnNewPiece(); {
+        public void spawnNewPiece() {
             //The new piece logic should go here!
         }
 
@@ -100,5 +102,3 @@ public class Main {
         }
     }
 
-
-}
