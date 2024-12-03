@@ -69,6 +69,12 @@ public class Grid {
         }
     }
 
-
-
+    // shift all lines down by one row to fill the empty space
+    public static void shiftDown(int[][] grid) {
+        for (int i = Main.HEIGHT - 2; i >= 0; i--) {
+            for (int j = 0; j < Main.WIDTH; j++) {
+                grid[i + 1][j] = grid[i][j]; // move the row down by one
+            }
+        }
+    }
 }
