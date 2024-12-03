@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class simpleGame {
 
     private static Random random = new Random();
-    private static int[] fallingBlocksY = new int[10];'An array for simulating falling blocks'
+    private static int[] fallingBlocksY = new int[10]; 'An array for simulating falling blocks'
     private static String[] menuOptions = {"Start","Exit"};
     private static int selectedOption = 0;
 
