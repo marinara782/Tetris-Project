@@ -62,6 +62,13 @@ public class Grid {
         return true; // return true if the entire row is filled
     }
 
-    //
+    // removes a specific line from the grid
+    public static void removeLine(int row, int[][] grid) {
+        for (int i = 0; i < Main.WIDTH; i ++) {
+            grid[row][i] = 0; // sets all blocks in the row to empty
+        }
+    }
+
+
 
 }
