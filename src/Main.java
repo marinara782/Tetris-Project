@@ -2,10 +2,17 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
-//Basically the start of our game will go here!
-        private static int[] fallingBlocksY = new int[10];//An array for simulating falling blocks
-        private static String[] menuOptions = {"Start","Exit"};
-        private static int selectedOption = 0;
+    // Width of the game grid
+        private static final int WIDTH = 10;
+    // Height of the game grid
+        private static final int HEIGHT = 20;
+    // 2D array of the game grid
+        private static final int[][] grid = new int[HEIGHT][WIDTH];
+        // Current active piece
+        private static Tetromino currentPiece; // implement Tetromino file
+    // Coordinates of the current piece
+    private static int currentX, currentY;
+        // Game over flag
         boolean gameOver = false;
 
 
@@ -63,8 +70,21 @@ public class Main {
 
         // Run the Tetris game loop here!
         public void runGame(){
-            //implement game logic here            spawnNewPiece();
-            gameLoop();
+            //implement game logic here
+            initializeGrid(); // initialize to an empty state
+            while (!gameOver) {
+                spawnNewPiece(); // spawns a random piece
+                gameLoop(); // start the game loop
+            }
+        }
+
+        // Initialize the grid
+        public static void initializeGrid() {
+            for (int i = 0; i < HEIGHT; i++) {
+                for (int j = 0; j < WIDTH; j++) {
+                    grid[i][j] = 0;
+                }
+            }
         }
 
         // This is where we would put the arrow keys and implement them as such!!
