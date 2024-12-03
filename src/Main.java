@@ -87,6 +87,13 @@ public class Main {
             }
         }
 
+        // spawn a random piece at the top center of the grid
+        public static void spawnNewPiece() {
+            currentPiece = Tetromino.getRandomPiece(); // random piece from tetromino
+            currentX = WIDTH / 2 - 2; // set the piece's x position to be in the center
+            currentY = 0; // start the piece at the top of the grid
+        }
+
         // This is where we would put the arrow keys and implement them as such!!
         public static void handleUserInput() {
             displayMenu();
