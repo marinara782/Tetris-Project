@@ -1,8 +1,17 @@
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
+public class MainTest {
 
-    @org.junit.jupiter.api.Test
-    void main() {
+    @Test
+    public void trueTest() {
+        assertTrue(true);
     }
+
+    @Test
+    public void equalTest() {
+        assertEquals(0, 0);
+    }
+
 }

@@ -1,3 +1,5 @@
+import tetromino.Tetromino;
+
 public class Grid {
     // Check if a piece can move to the specified position (x,y) on the grid
     public static boolean canMove(int[][] piece, int newX, int newY, int[][] grid) {
