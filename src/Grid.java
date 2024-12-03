@@ -44,11 +44,24 @@ public class Grid {
     // Clears any full lines from the grid and shifts down the remaining lines
     public static void clearLine(int[][]grid) {
         for (int i = Main.HEIGHT - 1; i >= 0; i--) {
-            if (isLineFull(i, grid)) { // create a method to check if the line is full
+            if (isLineFull(i, grid)) { // create a method to check if the line is full (DONE)
                 removeLine(i,grid); // create a method to remove lines
                 shiftDown(grid); // method to shift all lines down by one
                 i++; // Checks the current row after shifting
             }
         }
     }
+
+    // checks if a specific row is full!
+    public static boolean isLineFull(int row, int[][] grid) {
+        for (int i = 0; i < Main.WIDTH; i++) {
+            if (grid[row][i] == 0) {
+                return false; // If any block is empty in the row then it's not full!
+            }
+        }
+        return true; // return true if the entire row is filled
+    }
+
+    //
+
 }
