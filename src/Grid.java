@@ -29,5 +29,17 @@ public class Grid {
         }
     }
 
+// Display the current state of the game grid in the console
+    public static void displayGrid(int[][] grid) {
+        System.out.println("Tetris screen here");
+        for (int i = 0; i < Main.HEIGHT; i++) {
+            for (int j = 0; j < Main. WIDTH; j++) {
+                if (grid[i][j] == 1) {
+                    // Input blocks here
+                }
+            }
+        }
+    }
 
+    //
 }
