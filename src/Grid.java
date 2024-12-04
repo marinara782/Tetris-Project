@@ -1,4 +1,24 @@
+import tetromino.Tetromino;
+
 public class Grid {
+    private static final int WIDTH = 10; 
+    private static final int HEIGHT = 20; 
+    private final int[][] grid; // The grid array (0 = empty, 1 = filled)
+
+    public Grid() {
+        this.grid = new int[HEIGHT][WIDTH];
+        initializeGrid(); // Initialize the grid to empty
+    }
+
+    // Initialize the grid to all zeros (empty)
+    private void initializeGrid() {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                grid[i][j] = 0;
+            }
+        }
+    }
+
     // Check if a piece can move to the specified position (x,y) on the grid
     public static boolean canMove(int[][] piece, int newX, int newY, int[][] grid) {
         for (int i = 0; i < piece.length; i++) {
@@ -7,7 +27,7 @@ public class Grid {
                 if (piece[i][j] == 1) {
                     int x = newX + j;
                     int y = newY + i;
-                    if (x < 0 || x >= Main.WIDTH || y >= Main.HEIGHT || grid[x][y] == 1) {
+                    if (x < 0 || x >= WIDTH || y >= HEIGHT || grid[x][y] == 1) {
                         return false; // Can't move if the position is out of bounds or occupied
                     }
                 }
@@ -17,7 +37,7 @@ public class Grid {
     }
 
     // Lock the piece into the grid when it reaches the bottom
-    public static void lockPiece(Tetromino piece, int x, int y int[][] grid) {
+    public static void lockPiece(Tetromino piece, int x, int y, int[][] grid) {
         int[][] shape = piece.getShape(); // Get the shapes piece!
         for (int i = 0; i < shape.length; i++) {
             for (int j = 0; j < shape[i].length; j++) {
@@ -32,18 +52,21 @@ public class Grid {
 // Display the current state of the game grid in the console
     public static void displayGrid(int[][] grid) {
         System.out.println("Tetris screen here");
-        for (int i = 0; i < Main.HEIGHT; i++) {
-            for (int j = 0; j < Main. WIDTH; j++) {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
                 if (grid[i][j] == 1) {
-                    // Input blocks here
+                    System.out.print("X"); // Represent filled block with "X"
+                } else {
+                    System.out.print(" "); // Empty space
                 }
             }
+            System.out.println(); // Move to the next row after each line
         }
     }
 
     // Clears any full lines from the grid and shifts down the remaining lines
     public static void clearLine(int[][]grid) {
-        for (int i = Main.HEIGHT - 1; i >= 0; i--) {
+        for (int i = HEIGHT - 1; i >= 0; i--) {
             if (isLineFull(i, grid)) { // create a method to check if the line is full (DONE)
                 removeLine(i,grid); // create a method to remove lines (DONE)
                 shiftDown(grid); // method to shift all lines down by one (DONE)
@@ -54,7 +77,7 @@ public class Grid {
 
     // checks if a specific row is full!
     public static boolean isLineFull(int row, int[][] grid) {
-        for (int i = 0; i < Main.WIDTH; i++) {
+        for (int i = 0; i < WIDTH; i++) {
             if (grid[row][i] == 0) {
                 return false; // If any block is empty in the row then it's not full!
             }
@@ -64,17 +87,22 @@ public class Grid {
 
     // removes a specific line from the grid
     public static void removeLine(int row, int[][] grid) {
-        for (int i = 0; i < Main.WIDTH; i ++) {
+        for (int i = 0; i < WIDTH; i ++) {
             grid[row][i] = 0; // sets all blocks in the row to empty
         }
     }
 
     // shift all lines down by one row to fill the empty space
     public static void shiftDown(int[][] grid) {
-        for (int i = Main.HEIGHT - 2; i >= 0; i--) {
-            for (int j = 0; j < Main.WIDTH; j++) {
+        for (int i = HEIGHT - 2; i >= 0; i--) {
+            for (int j = 0; j < WIDTH; j++) {
                 grid[i + 1][j] = grid[i][j]; // move the row down by one
             }
         }
+    }
+
+    // Accessor for the grid
+    public int[][] getGrid() {
+        return grid;
     }
 }
