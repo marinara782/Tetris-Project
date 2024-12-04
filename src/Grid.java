@@ -1,6 +1,24 @@
 import tetromino.Tetromino;
 
 public class Grid {
+    private static final int WIDTH = 10; 
+    private static final int HEIGHT = 20; 
+    private final int[][] grid; // The grid array (0 = empty, 1 = filled)
+
+    public Grid() {
+        this.grid = new int[HEIGHT][WIDTH];
+        initializeGrid(); // Initialize the grid to empty
+    }
+
+    // Initialize the grid to all zeros (empty)
+    private void initializeGrid() {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                grid[i][j] = 0;
+            }
+        }
+    }
+
     // Check if a piece can move to the specified position (x,y) on the grid
     public static boolean canMove(int[][] piece, int newX, int newY, int[][] grid) {
         for (int i = 0; i < piece.length; i++) {
@@ -34,12 +52,15 @@ public class Grid {
 // Display the current state of the game grid in the console
     public static void displayGrid(int[][] grid) {
         System.out.println("Tetris screen here");
-        for (int i = 0; i < Main.HEIGHT; i++) {
-            for (int j = 0; j < Main. WIDTH; j++) {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
                 if (grid[i][j] == 1) {
-                    // Input blocks here
+                    System.out.print("X"); // Represent filled block with "X"
+                } else {
+                    System.out.print(" "); // Empty space
                 }
             }
+            System.out.println(); // Move to the next row after each line
         }
     }
 
@@ -78,5 +99,10 @@ public class Grid {
                 grid[i + 1][j] = grid[i][j]; // move the row down by one
             }
         }
+    }
+
+    // Accessor for the grid
+    public int[][] getGrid() {
+        return grid;
     }
 }
