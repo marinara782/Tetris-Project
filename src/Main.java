@@ -122,6 +122,10 @@ public class Main {
         //Spawn a new random tetris piece
         public void spawnNewPiece() {
             //The new piece logic should go here!
+            // Get a random piece
+            currentPiece = getRandomTetromino(); // Check if we can make a random selection of shapes
+            currentX = // set the position to be center
+
         }
 
 
