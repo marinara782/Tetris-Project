@@ -1,13 +1,17 @@
 //This will help with the random shapes!
+
+import tetromino.Tetromino;
 import java.util.Random;
 import java.util.Scanner;
+
+
 public class Main {
     // Width of the game grid
-        private static final int WIDTH = 10;
+        // private static final int WIDTH = 10;
     // Height of the game grid
-        private static final int HEIGHT = 20;
+        // private static final int HEIGHT = 20;
     // 2D array of the game grid
-        private static final int[][] grid = new int[HEIGHT][WIDTH];
+        // private static final int[][] grid = new int[HEIGHT][WIDTH];
         // Current active piece
         private static Tetromino currentPiece; // implement Tetromino file
     // Coordinates of the current piece
