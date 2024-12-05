@@ -21,20 +21,24 @@ public class Main {
     private static int currentX, currentY;
     // Game over flag
     static boolean gameOver = false;
+    // Create a reference for userInput
+    private static UserInput userInput;
+
+    public Main() {
+        userInput = new UserInput(this);
+    }
+
 
         public static void main(String[] args) {
+            // create an instance of Main
+            Main game = new Main();
             //Start the game loop by showing the Tetris title screen
-            showTitleScreen();
+            game.showTitleScreen();
         }
 
-        public static void showTitleScreen() {
-            displayTitle(); //Displays the title logo
-            // displayMenu(); //Displays the menu
-        }
-
-        // Displays the Tetris title and logo!
-        public static void displayTitle() {
-            System.out.println("TETRIS"); //Just displays Tetris on the screen
+        public void showTitleScreen() {
+            System.out.println("Welcome to Tetris!");
+            userInput.handleInput();
         }
 
 
@@ -82,7 +86,7 @@ public class Main {
                 spawnNewPiece(); // spawns a random piece
 
                 // Get user input and handle it
-                userInput.handleInput(Main.this);
+                userInput.handleInput();
 
                 gameLoop(); // start the game loop
             }
@@ -122,7 +126,7 @@ public class Main {
 
         // Handle user input for moving the piece
         public static void handleUserInput() {
-            userInput.handleInput(Main.this);
+            userInput.handleInput();
         }
 
         // Move the current piece left

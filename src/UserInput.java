@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 
-public class userInput {
+public class UserInput {
     // Scanner for reading user input
     private final Scanner scanner;
     private final Main game; // Instance of Main passed to userInput
 
     // Constructor: Initializes the scanner
-    public userInput(Main game) {
+    public UserInput(Main game) {
         this.game = game; // Stores the reference to the Main instance
         scanner = new Scanner(System.in);
     }
@@ -23,7 +23,6 @@ public class userInput {
     public void handleInput() {
         // Get input from the user
         String input = getInput();
-
 
         // Handle the user input and preform the corresponding action
         switch (input) {
