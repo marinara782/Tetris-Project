@@ -1,36 +1,48 @@
-import javafx.scene.input.KeyEvent;
+import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI;
-import java.awt.event.KeyEvent;
 
 public class userInput {
-    // This will be handle all the user input!
-    private Main game;
+    // Scanner for reading user input
+    private Scanner scanner;
 
-    // Constructor: Initialize the userInput with the game reference!
-    public userInput(Main game) {
-        this.game = game;
+    // Constructor: Initializes the scanner
+    public userInput() {
+        scanner = new Scanner(System.in);
+    }
+
+    public String getInput() {
+        // Prints instructions for the user
+        System.out.println("Use WASD to move the piece! Press Q to quit the game.");
+        // Read and return user input, convert to lowercase to handle case-sensitivity
+        return scanner.nextLine().trim().toLowerCase();
     }
 
     // Method is called whenever a key is pressed
-    public void handleKeyPressed(KeyEvent event) {
-        // Reference to the main game class, to call specific methods
-        switch(event.getCode()) {
-            case LEFT: // left arrow key
-                game.movePieceLeft(); // Move the current piece left
+    public void handleInput(Main) {
+        // Get input from the user
+        String input = getInput();
+
+
+        // Handle the user input and preform the corresponding action
+        switch (input) {
+            case "a": // Left
+                Main.movePieceLeft();
                 break;
-            case RIGHT: // right arrow key
-                game.movePieceRight(); // move current piece right
+            case "d": // Right
+                Main.movePieceRight();
                 break;
-            case DOWN: // down arrow key
-                game.movePieceDown();
+            case "s": // Down
+                Main.movePieceDown
+                break
+            case "w": // Rotate
+                Main.rotatePieceClockWise();
                 break;
-            case UP: // up arrow key
-                game.rotatePiece(); // Rotate the current piece
+            case "q": // Quit game
+                Main.setGameOver(true);
                 break;
             default:
+                System.out.println("Invalid input. Use WASD to move, Q to quit.");
                 break;
-
         }
     }
 }
