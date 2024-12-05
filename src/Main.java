@@ -162,5 +162,23 @@ public class Main {
                 currentPiece.rotateCounterClockwise(); // undo the rotation
             }
         }
+
+
+        // Check for collision with the grid boundaries or other pieces
+        public static boolean isCollision() {
+            int[][] shape = currentPiece.getShape();
+            for (int i = 0; i < shape.length; i++) {
+                for (int j = 0; j < shape[i].length; j++) {
+                    if (shape[i][j] != 0) {
+                        int x = currentX + j;
+                        int y = currentY + i;
+                        if (x < 0 || x >= WIDTH || y >= HEIGHT || grid[y][x] != 0) {
+                            return true; // collision is detected
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
 
