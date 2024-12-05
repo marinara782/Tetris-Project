@@ -58,13 +58,9 @@ public class Main {
     public void startGame() {
         System.out.println("Starting...");
         //The game will start
-        runGame();
+        runGame(userInput);
     }
 
-    // Initialize the grid
-    public static void initializeGrid() {
-        grid.initializeGrid();
-    }
 
 
     // No point in having this code if we are using javaFX. DELETE WHEN U WANT
@@ -81,8 +77,8 @@ public class Main {
 
 
         // Run the Tetris game loop here!
-        public void runGame(){
-            initializeGrid(); // set all to 0
+        public void runGame(UserInput inputHandler){
+            grid.initializeGrid(); // set all to 0
 
             while (!gameOver) {
                 spawnNewPiece(); // spawns a random piece
@@ -90,7 +86,7 @@ public class Main {
                 // Get user input and handle it
                 userInput.handleInput();
 
-                gameLoop(); // start the game loop
+                gameLoop(inputHandler); // start the game loop
             }
         }
 
@@ -98,7 +94,7 @@ public class Main {
         public static void spawnNewPiece() {
             currentPiece = getRandomPiece(); // random piece from tetromino
 
-            currentX = Grid.WIDTH / 2 - 2; // set the piece's x position to be in the center
+            currentX = grid.getGrid().length / 2 - 2; // set the piece's x position to be in the center
             currentY = 0; // start the piece at the top of the grid
         }
 
@@ -106,8 +102,33 @@ public class Main {
 
 
         // Basically every this many milliseconds a piece will drop
-        public static void gameLoop() {
-            handleUserInput(); // process user input
+        public void gameLoop(UserInput inputHandler) {
+            inputHandler.handleInput();
+
+            // Drop the piece every 500 ms
+            try {
+                // Sleep for 500ms
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                // log the exception in a more robust way
+                handleInterruptedException(e);
+            }
+
+            // Move the piece down by one unit
+            movePieceDown();
+
+            // Check if the game should end
+            if(gameOver) {
+                System.out.println("Game Over.");
+            }
+        }
+
+        private void handleInterruptedException(InterruptedException e) {
+            // log the exception
+            System.err.println("Error occured during game loop: " + e.getMessage());
+
+            // handle the game over scenario
+            gameOver = true;
         }
 
 
@@ -186,19 +207,6 @@ public class Main {
                 }
             }
             return false;
-        }
-
-
-        // Place the current piece on the grid
-        public static void placePiece() {
-            int [][] shape = currentPiece.getShape();
-            for (int i = 0; i < shape.length; i++) {
-                for (int j = 0; j < shape[i].length; j++) {
-                    if (shape[i][j] != 0) {
-                        grid[currentY + i][currentX + j] = 1; // places the piece on the grid
-                    }
-                }
-            }
         }
 
         // Set the game over state
