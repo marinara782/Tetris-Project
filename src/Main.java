@@ -154,5 +154,13 @@ public class Main {
                 placePiece(); // Place the piece on the grid, look for method later
             }
         }
+
+        // Rotate the current piece clockwise
+        public static void rotatePieceClockwise() {
+            currentPiece.rotateClockwise(); // called from Tetromino!
+            if (isCollision()) {
+                currentPiece.rotateCounterClockwise(); // undo the rotation
+            }
+        }
     }
 
