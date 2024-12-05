@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Main {
     // Creating a game grid
-    Grid grid = new Grid();
+    private static Grid grid;
     // Current active piece
     private static Tetromino currentPiece; // implement Tetromino file
     // Coordinates of the current piece
@@ -28,18 +28,15 @@ public class Main {
         userInput = new UserInput(this);
     }
 
-
         public static void main(String[] args) {
-            // create an instance of Main
+            // initialize grid
+            grid = new Grid();
+            // initialize the game by creating an instance of main
             Main game = new Main();
             //Start the game loop by showing the Tetris title screen
-            game.showTitleScreen();
+            game.startGame();
         }
 
-        public void showTitleScreen() {
-            System.out.println("Welcome to Tetris!");
-            userInput.handleInput();
-        }
 
 
 
@@ -57,11 +54,16 @@ public class Main {
 //            }
 //        }
 
-        // This is where the game will start
+    // This is where the game will start
     public void startGame() {
         System.out.println("Starting...");
         //The game will start
         runGame();
+    }
+
+    // Initialize the grid
+    public static void initializeGrid() {
+        grid.initializeGrid();
     }
 
 
@@ -80,8 +82,8 @@ public class Main {
 
         // Run the Tetris game loop here!
         public void runGame(){
-            //implement game logic here
-            // initialize Grid(); // initialize to an empty state
+            initializeGrid(); // set all to 0
+
             while (!gameOver) {
                 spawnNewPiece(); // spawns a random piece
 
@@ -95,7 +97,8 @@ public class Main {
         // spawn a random piece at the top center of the grid
         public static void spawnNewPiece() {
             currentPiece = getRandomPiece(); // random piece from tetromino
-            currentX = WIDTH / 2 - 2; // set the piece's x position to be in the center
+
+            currentX = Grid.WIDTH / 2 - 2; // set the piece's x position to be in the center
             currentY = 0; // start the piece at the top of the grid
         }
 
@@ -132,25 +135,30 @@ public class Main {
         // Move the current piece left
         public void movePieceLeft() {
             currentX--; // Move left by 1 unit
-            if (currentX < 0 || isCollision()) {
-                currentX++; // Undo the move if it collides
+            if (Grid.canMove(currentPiece.getShape(), currentX - 1, currentY, grid.getGrid())) {
+                currentX--; // move piece left
             }
         }
 
         // Move the current piece right
         public void movePieceRight() {
             currentX++; // Move right by 1 unit
-            if (currentX + currentPiece.getShape()[0].length > WIDTH || isCollision()) {
-                currentX--; // undo the move if it collides
+            if (Grid.canMove(currentPiece.getShape(), currentX + 1, currentY, grid.getGrid())) {
+                currentX++; // move right
             }
         }
 
         // Move the current piece down
         public void movePieceDown() {
             currentY++; // Move down by 1 unit
-            if(currentY + currentPiece.getShape().length > HEIGHT || isCollision()) {
+            if(currentY + currentPiece.getShape().length > Grid.HEIGHT || isCollision()) {
                 currentY--; // undo the move if it collides
-                placePiece(); // Place the piece on the grid, look for method later
+                // lock the piece in place
+                Grid.lockPiece(currentPiece, currentX, currentY, grid.getGrid());
+                // check and clear any full lines
+                Grid.clearLine(grid.getGrid());
+                // spawn a new piece
+                spawnNewPiece();
             }
         }
 
@@ -164,14 +172,14 @@ public class Main {
 
 
         // Check for collision with the grid boundaries or other pieces
-        public static boolean isCollision() {
+        public boolean isCollision() {
             int[][] shape = currentPiece.getShape();
             for (int i = 0; i < shape.length; i++) {
                 for (int j = 0; j < shape[i].length; j++) {
                     if (shape[i][j] != 0) {
                         int x = currentX + j;
                         int y = currentY + i;
-                        if (x < 0 || x >= WIDTH || y >= HEIGHT || grid[y][x] != 0) {
+                        if (x < 0 || x >= Grid.WIDTH || y >= Grid.HEIGHT || Grid.getGrid()[y][x] != 0) {
                             return true; // collision is detected
                         }
                     }
