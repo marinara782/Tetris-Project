@@ -146,6 +146,13 @@ public class Main {
             }
         }
 
-
+        // Move the current piece down
+        public static void movePieceDown() {
+            currentY++; // Move down by 1 unit
+            if(currentY + currentPiece.getShape().length > HEIGHT || isCollision()) {
+                currentY--; // undo the move if it collides
+                placePiece(); // Place the piece on the grid, look for method later
+            }
+        }
     }
 
