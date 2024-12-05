@@ -21,7 +21,7 @@ public class Main {
     // Coordinates of the current piece
     private static int currentX, currentY;
     // Game over flag
-    boolean gameOver = false;
+    static boolean gameOver = false;
 
         public static void main(String[] args) {
             //Start the game loop by showing the Tetris title screen
@@ -177,6 +177,7 @@ public class Main {
             return false;
         }
 
+
         // Place the current piece on the grid
         public static void placePiece() {
             int [][] shape = currentPiece.getShape();
@@ -187,6 +188,11 @@ public class Main {
                     }
                 }
             }
+        }
+
+        // Set the game over state
+        public static void setGameOver(boolean state) {
+            gameOver = state;
         }
 
     }
