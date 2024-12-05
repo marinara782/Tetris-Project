@@ -156,7 +156,7 @@ public class Main {
         // Move the current piece left
         public void movePieceLeft() {
             currentX--; // Move left by 1 unit
-            if (Grid.canMove(currentPiece.getShape(), currentX - 1, currentY, grid.getGrid())) {
+            if (grid.canMove(currentPiece.getShape(), currentX - 1, currentY)) {
                 currentX--; // move piece left
             }
         }
@@ -164,7 +164,7 @@ public class Main {
         // Move the current piece right
         public void movePieceRight() {
             currentX++; // Move right by 1 unit
-            if (Grid.canMove(currentPiece.getShape(), currentX + 1, currentY, grid.getGrid())) {
+            if (grid.canMove(currentPiece.getShape(), currentX + 1, currentY)) {
                 currentX++; // move right
             }
         }
@@ -186,7 +186,7 @@ public class Main {
         // Rotate the current piece clockwise
         public void rotatePieceClockwise() {
             currentPiece.rotateClockwise(); // called from Tetromino!
-            if (!Grid.canMove(currentPiece.getShape(), currentX, currentY, Grid.getGrid())) {
+            if (!grid.canMove(currentPiece.getShape(), currentX, currentY)) {
                 currentPiece.rotateCounterClockwise(); // undo the rotation
             }
         }
