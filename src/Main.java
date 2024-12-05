@@ -22,7 +22,7 @@ public class Main {
     // Game over flag
     static boolean gameOver = false;
     // Create a reference for userInput
-    private static UserInput userInput;
+    private UserInput userInput;
 
     public Main() {
         userInput = new UserInput(this);
@@ -36,8 +36,6 @@ public class Main {
             //Start the game loop by showing the Tetris title screen
             game.startGame();
         }
-
-
 
 
         // TODO: We should implement this in the JavaFX Files instead of directly in Main
@@ -86,7 +84,7 @@ public class Main {
                 // Get user input and handle it
                 userInput.handleInput();
 
-                gameLoop(inputHandler); // start the game loop
+                gameLoop(); // start the game loop
             }
         }
 
@@ -102,8 +100,8 @@ public class Main {
 
 
         // Basically every this many milliseconds a piece will drop
-        public void gameLoop(UserInput inputHandler) {
-            inputHandler.handleInput();
+        public void gameLoop() {
+            userInput.handleInput();
 
             // Drop the piece every 500 ms
             try {
@@ -148,10 +146,6 @@ public class Main {
             }
         }
 
-        // Handle user input for moving the piece
-        public static void handleUserInput() {
-            userInput.handleInput();
-        }
 
         // Move the current piece left
         public void movePieceLeft() {
