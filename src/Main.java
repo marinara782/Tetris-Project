@@ -125,7 +125,7 @@ public class Main {
 
         private void handleInterruptedException(InterruptedException e) {
             // log the exception
-            System.err.println("Error occured during game loop: " + e.getMessage());
+            System.err.println("Error occurred during game loop: " + e.getMessage());
 
             // handle the game over scenario
             gameOver = true;
@@ -172,7 +172,7 @@ public class Main {
         // Move the current piece down
         public void movePieceDown() {
             currentY++; // Move down by 1 unit
-            if(currentY + currentPiece.getShape().length > Grid.HEIGHT || isCollision()) {
+            if(currentY + currentPiece.getShape().length > Grid.HEIGHT) {
                 currentY--; // undo the move if it collides
                 // lock the piece in place
                 Grid.lockPiece(currentPiece, currentX, currentY, grid.getGrid());
@@ -186,28 +186,11 @@ public class Main {
         // Rotate the current piece clockwise
         public void rotatePieceClockwise() {
             currentPiece.rotateClockwise(); // called from Tetromino!
-            if (isCollision()) {
+            if (!Grid.canMove(currentPiece.getShape(), currentX, currentY, Grid.getGrid())) {
                 currentPiece.rotateCounterClockwise(); // undo the rotation
             }
         }
 
-
-        // Check for collision with the grid boundaries or other pieces
-        public boolean isCollision() {
-            int[][] shape = currentPiece.getShape();
-            for (int i = 0; i < shape.length; i++) {
-                for (int j = 0; j < shape[i].length; j++) {
-                    if (shape[i][j] != 0) {
-                        int x = currentX + j;
-                        int y = currentY + i;
-                        if (x < 0 || x >= Grid.WIDTH || y >= Grid.HEIGHT || Grid.getGrid()[y][x] != 0) {
-                            return true; // collision is detected
-                        }
-                    }
-                }
-            }
-            return false;
-        }
 
         // Set the game over state
         public void setGameOver(boolean state) {
