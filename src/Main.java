@@ -1,6 +1,14 @@
 //This will help with the random shapes!
 
+import tetromino.*;
+import tetromino.IShape;
+import tetromino.JShape;
+import tetromino.LShape;
+import tetromino.OShape;
+import tetromino.TShape;
 import tetromino.Tetromino;
+import tetromino.ZShape;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -125,15 +133,27 @@ public class Main {
             // Get a random piece
             currentPiece = getRandomTetromino(); // Check if we can make a random selection of shapes
             currentX = // set the position to be center
-
+            currentY = // start the piece at the top of the grid
         }
 
 
         // This is to generate the shape matrix for each tetris type!
-        private int[][] getTetrisShape(String type) {
-            switch (type) {
-                //The shapes should go here once we figure it out
+        public static Tetromino getRandomTetromino() {
+            Random random = new Random();
+            int choice = random.nextInt(7); // Generates a random number between 0 and 6
+            switch (choice) {
+                case 0: return new IShape();
+                case 1: return new OShape();
+                case 2: return new TShape();
+                case 3: return new LShape();
+                case 4: return new JShape();
+                case 5: return new SShape();
+                case 6: return new ZShape();
+                default: throw new IllegalArgumentException("Invalid Tetromino type.");
             }
         }
+
+        // Handle user input for moving the piece
+
     }
 
