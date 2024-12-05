@@ -22,7 +22,7 @@ public class Main {
     // Game over flag
     static boolean gameOver = false;
     // Create a reference for userInput
-    private UserInput userInput;
+    private final UserInput userInput;
 
     public Main() {
         userInput = new UserInput(this);
@@ -56,7 +56,7 @@ public class Main {
     public void startGame() {
         System.out.println("Starting...");
         //The game will start
-        runGame(userInput);
+        runGame();
     }
 
 
@@ -75,7 +75,7 @@ public class Main {
 
 
         // Run the Tetris game loop here!
-        public void runGame(UserInput inputHandler){
+        public void runGame(){
             grid.initializeGrid(); // set all to 0
 
             while (!gameOver) {
