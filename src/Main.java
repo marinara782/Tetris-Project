@@ -100,12 +100,8 @@ public class Main {
 
 
         // Basically every this many milliseconds a piece will drop
-        public void gameLoop() {
-            new Timer(500, e -> {  //
-                if (!gameOver) {
-                    movePieceDown(); // This method will be responsible for helping the Tetromino move down
-                }
-            }).start();
+        public static void gameLoop() {
+            handleUserInput(); // process user input
         }
 
 
@@ -180,5 +176,18 @@ public class Main {
             }
             return false;
         }
+
+        // Place the current piece on the grid
+        public static void placePiece() {
+            int [][] shape = currentPiece.getShape();
+            for (int i = 0; i < shape.length; i++) {
+                for (int j = 0; j < shape[i].length; j++) {
+                    if (shape[i][j] != 0) {
+                        grid[currentY + i][currentX + j] = 1; // places the piece on the grid
+                    }
+                }
+            }
+        }
+
     }
 
