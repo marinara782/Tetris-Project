@@ -137,5 +137,15 @@ public class Main {
                 currentX++; // Undo the move if it collides
             }
         }
+
+        // Move the current piece right
+        public static void movePieceRight() {
+            currentX++; // Move right by 1 unit
+            if (currentX + currentPiece.getShape()[0].length > WIDTH || isCollision()) {
+                currentX--; // undo the move if it collides
+            }
+        }
+
+
     }
 
