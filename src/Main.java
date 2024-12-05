@@ -61,15 +61,19 @@ public class Main {
         runGame();
     }
 
+
+    // No point in having this code if we are using javaFX. DELETE WHEN U WANT
         // Execute the selected menu option
-        public void executeMenuSelection() {
-            if (selectedOption == 0) {
-                startGame();
-            } else if (selectedOption == 2) {
-                System.out.println("Exiting...:(");
-                System.exit(0);
-            }
-        }
+        //public void executeMenuSelection() {
+            //if (selectedOption == 0) {
+                //startGame();
+            //} else if (selectedOption == 2) {
+                //System.out.println("Exiting...:(");
+                //System.exit(0);
+           // }
+        //}
+
+
 
         // Run the Tetris game loop here!
         public void runGame(){
@@ -77,6 +81,10 @@ public class Main {
             // initialize Grid(); // initialize to an empty state
             while (!gameOver) {
                 spawnNewPiece(); // spawns a random piece
+
+                // Get user input and handle it
+                userInput.handleInput(Main.this);
+
                 gameLoop(); // start the game loop
             }
         }
@@ -114,6 +122,19 @@ public class Main {
                     case 5: return new SShape();
                     case 6: return new ZShape();
                     default: throw new IllegalArgumentException("Invalid tetromino type.");
+            }
+        }
+
+        // Handle user input for moving the piece
+        public static void handleUserInput() {
+            userInput.handleInput(Main.this);
+        }
+
+        // Move the current piece left
+        public static void movePieceLeft() {
+            currentX--; // Move left by 1 unit
+            if (currentX < 0 || isCollision()) {
+                currentX++; // Undo the move if it collides
             }
         }
     }
