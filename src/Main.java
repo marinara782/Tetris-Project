@@ -10,7 +10,6 @@ import tetromino.Tetromino;
 import tetromino.ZShape;
 
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class Main {
@@ -127,7 +126,7 @@ public class Main {
         }
 
         // Move the current piece left
-        public static void movePieceLeft() {
+        public void movePieceLeft() {
             currentX--; // Move left by 1 unit
             if (currentX < 0 || isCollision()) {
                 currentX++; // Undo the move if it collides
@@ -135,7 +134,7 @@ public class Main {
         }
 
         // Move the current piece right
-        public static void movePieceRight() {
+        public void movePieceRight() {
             currentX++; // Move right by 1 unit
             if (currentX + currentPiece.getShape()[0].length > WIDTH || isCollision()) {
                 currentX--; // undo the move if it collides
@@ -143,7 +142,7 @@ public class Main {
         }
 
         // Move the current piece down
-        public static void movePieceDown() {
+        public void movePieceDown() {
             currentY++; // Move down by 1 unit
             if(currentY + currentPiece.getShape().length > HEIGHT || isCollision()) {
                 currentY--; // undo the move if it collides
@@ -152,7 +151,7 @@ public class Main {
         }
 
         // Rotate the current piece clockwise
-        public static void rotatePieceClockwise() {
+        public void rotatePieceClockwise() {
             currentPiece.rotateClockwise(); // called from Tetromino!
             if (isCollision()) {
                 currentPiece.rotateCounterClockwise(); // undo the rotation
@@ -191,7 +190,7 @@ public class Main {
         }
 
         // Set the game over state
-        public static void setGameOver(boolean state) {
+        public void setGameOver(boolean state) {
             gameOver = state;
         }
 

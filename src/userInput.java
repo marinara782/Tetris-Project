@@ -3,10 +3,12 @@ import java.util.Scanner;
 
 public class userInput {
     // Scanner for reading user input
-    private Scanner scanner;
+    private final Scanner scanner;
+    private final Main game; // Instance of Main passed to userInput
 
     // Constructor: Initializes the scanner
-    public userInput() {
+    public userInput(Main game) {
+        this.game = game; // Stores the reference to the Main instance
         scanner = new Scanner(System.in);
     }
 
@@ -18,7 +20,7 @@ public class userInput {
     }
 
     // Method is called whenever a key is pressed
-    public void handleInput(Main) {
+    public void handleInput() {
         // Get input from the user
         String input = getInput();
 
@@ -26,19 +28,19 @@ public class userInput {
         // Handle the user input and preform the corresponding action
         switch (input) {
             case "a": // Left
-                Main.movePieceLeft();
+                game.movePieceLeft();
                 break;
             case "d": // Right
-                Main.movePieceRight();
+                game.movePieceRight();
                 break;
             case "s": // Down
-                Main.movePieceDown
-                break
+                game.movePieceDown();
+                break;
             case "w": // Rotate
-                Main.rotatePieceClockWise();
+                game.rotatePieceClockwise();
                 break;
             case "q": // Quit game
-                Main.setGameOver(true);
+                game.setGameOver(true);
                 break;
             default:
                 System.out.println("Invalid input. Use WASD to move, Q to quit.");
