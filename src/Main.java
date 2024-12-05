@@ -1,6 +1,14 @@
 //This will help with the random shapes!
 
+import tetromino.*;
+import tetromino.IShape;
+import tetromino.JShape;
+import tetromino.LShape;
+import tetromino.OShape;
+import tetromino.TShape;
 import tetromino.Tetromino;
+import tetromino.ZShape;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -75,18 +83,11 @@ public class Main {
 
         // spawn a random piece at the top center of the grid
         public static void spawnNewPiece() {
-            currentPiece = Tetromino.getRandomPiece(); // random piece from tetromino
+            currentPiece = getRandomPiece(); // random piece from tetromino
             currentX = WIDTH / 2 - 2; // set the piece's x position to be in the center
             currentY = 0; // start the piece at the top of the grid
         }
 
-        // TODO: This should be handled in another class, which should be in progress
-        // This is where we would put the arrow keys and implement them as such!!
-//        public static void handleUserInput() {
-//            displayMenu();
-//            //arrowKeys = ['up', 'down', 'left', 'right'] //just maybe a way we could implement the use of arrow keys'
-//            Scanner scanner = new Scanner(System.in); //create a scanner object to read user input from the console
-//        }
 
 
 
@@ -101,9 +102,18 @@ public class Main {
 
 
         // This is to generate the shape matrix for each tetris type!
-        private int[][] getTetrisShape(String type) {
-            switch (type) {
-                //The shapes should go here once we figure it out
+        public static Tetromino getRandomPiece() {
+            Random random = new Random();
+            int choice = random.nextInt(7);
+                switch (choice) {
+                    case 0: return new IShape();
+                    case 1: return new OShape();
+                    case 2: return new TShape();
+                    case 3: return new LShape();
+                    case 4: return new JShape();
+                    case 5: return new SShape();
+                    case 6: return new ZShape();
+                    default: throw new IllegalArgumentException("Invalid tetromino type.");
             }
         }
     }
